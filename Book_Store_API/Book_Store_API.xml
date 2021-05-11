@@ -15,6 +15,28 @@
             </summary>
             <returns>List Of Authors</returns>
         </member>
+        <member name="M:Book_Store_API.Controllers.AuthorsController.GetAuthor(System.Int32)">
+            <summary>
+            GetAuthor
+            </summary>
+            <param name="id"></param>
+            <returns>Author beloning to id</returns>
+        </member>
+        <member name="M:Book_Store_API.Controllers.AuthorsController.UpdateAuthor(System.Int32,Book_Store_API.DTOs.AuthorUpdateDTO)">
+            <summary>
+            Updates an existing entry.
+            </summary>
+            <param name="id"></param>
+            <param name="authorDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Book_Store_API.Controllers.AuthorsController.CreateAuthor(Book_Store_API.DTOs.CreateAuthorDTO)">
+            <summary>
+            Creates Author
+            </summary>
+            <param name="authorDTO"></param>
+            <returns></returns>
+        </member>
         <member name="T:Book_Store_API.Controllers.HomeController">
             <summary>
             Home Controller

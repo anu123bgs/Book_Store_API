@@ -37,9 +37,7 @@ namespace Book_Store_API
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddAutoMapper(typeof(Maps));
-
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -61,6 +59,7 @@ namespace Book_Store_API
                 });
             services.AddSingleton<ILoggerService, LoggerService>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddAutoMapper(typeof(Maps));
             services.AddControllers();
         }
 
