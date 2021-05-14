@@ -35,7 +35,8 @@ namespace Book_Store_API
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
             services.AddSwaggerGen(c =>
@@ -65,7 +66,8 @@ namespace Book_Store_API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -89,7 +91,7 @@ namespace Book_Store_API
 
             app.UseCors("Cors Policy");
             app.UseRouting();
-
+            SeedData.Seed(userManager, roleManager).Wait();
 
             app.UseAuthentication();
             app.UseAuthorization();
