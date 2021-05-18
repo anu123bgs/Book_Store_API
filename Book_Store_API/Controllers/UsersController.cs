@@ -34,15 +34,45 @@ namespace Book_Store_API.Controllers
             config_ = config;
         }
         /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
+        [Route("register")]
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
+        {
+            try
+            {
+                var username = userDTO.EmailAddress;
+                var pwd = userDTO.Password;
+                loggerService_.LogInfo($"Register called for {username}");
+                var user = new IdentityUser { Email = username, UserName = username };
+                var result = await userManager_.CreateAsync(user, pwd);
+                if(!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                        loggerService_.LogError($"{ error.Code}: {error.Description}");
+                    return InternalError($"{username} User registration failed.");
+                }
+                return Ok(new { result.Succeeded });
+            }
+            catch(Exception e)
+            {
+                return InternalError(e.Message + e.InnerException);
+            }
+        }
+        /// <summary>
         /// User Login endpoint
         /// </summary>
         /// <param name="userDTO"></param>
         /// <returns></returns>
+        [Route("login")]
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
         {
-            var username = userDTO.UserName;
+            var username = userDTO.EmailAddress;
             var pwd = userDTO.Password;
             loggerService_.LogInfo($"Login called for {username}");
             var result = await signInManager_.PasswordSignInAsync(username, pwd, false, false);
@@ -76,6 +106,11 @@ namespace Book_Store_API.Controllers
                 signingCredentials: credentials
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        private ObjectResult InternalError(string message)
+        {
+            loggerService_.LogError(message);
+            return StatusCode(500, "Something Went Wrong, Please contact admin.");
         }
     }
 }
