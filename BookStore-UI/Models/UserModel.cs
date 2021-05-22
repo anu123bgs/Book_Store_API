@@ -19,11 +19,17 @@ namespace BookStore_UI.Models
 
         [DataType(DataType.Password)]
         [Display(Name ="Confirm Password")]
-        [StringLength(15, ErrorMessage = "Password should be {2} to {1} chars", MinimumLength = 6)]
+        [Compare("Password", ErrorMessage = "Password and Confimration password do not match")]
         public string ConfirmPassword { get; set; }
     }
-    public class UserModel
+    public class LoginModel
     {
-
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        public string EmailAddress { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }

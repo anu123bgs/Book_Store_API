@@ -1,0 +1,14 @@
+﻿@page "/logout"
+
+@using BookStore_UI.Contracts
+
+@inject IAuthenticationRepository authRepo_
+@inject NavigationManager navMan_
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await authRepo_.Logout();
+        navMan_.NavigateTo("/");
+    }
+}
