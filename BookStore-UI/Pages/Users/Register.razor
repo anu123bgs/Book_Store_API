@@ -6,36 +6,32 @@
 @inject IAuthenticationRepository authRepo_
 @inject NavigationManager navMan_
 
-<div class="card">
-    <h3 class="card-title">Register</h3>
-    @if (isFailed)
-    {
-        <div class="alert alert-danger">
-            <p>Something went wrong while registering.</p>
+<h3 class="card-title">Register</h3>
+@if (isFailed)
+{
+    <ErrorMessage Message="Something went wrong while registering." />    
+}
+<div class="card-body">
+    <EditForm Model="model" OnValidSubmit="HandleRegistration">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <InputText Id="email" class="form-control" @bind-Value="model.EmailAddress" />
+            <ValidationMessage For="@(() => model.EmailAddress)" />
         </div>
-    }
-    <div class="card-body">
-        <EditForm Model="model" OnValidSubmit="HandleRegistration">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <InputText Id="email" class="form-control" @bind-Value="model.EmailAddress" />
-                <ValidationMessage For="@(() => model.EmailAddress)" />
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <InputText type="password" class="form-control" id="password" @bind-Value="model.Password" />
-                <ValidationMessage For="@(() => model.Password)" />
-            </div>
-            <div class="form-group">
-                <label for="confirmpassword">Confirm Password</label>
-                <InputText type="password" class="form-control" id="confirmpassword" @bind-Value="model.ConfirmPassword" />
-                <ValidationMessage For="@(() => model.ConfirmPassword)" />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </EditForm>
-    </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <InputText type="password" class="form-control" id="password" @bind-Value="model.Password" />
+            <ValidationMessage For="@(() => model.Password)" />
+        </div>
+        <div class="form-group">
+            <label for="confirmpassword">Confirm Password</label>
+            <InputText type="password" class="form-control" id="confirmpassword" @bind-Value="model.ConfirmPassword" />
+            <ValidationMessage For="@(() => model.ConfirmPassword)" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
 </div>
 
 @code {
