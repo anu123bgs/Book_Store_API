@@ -36,6 +36,7 @@ namespace Book_Store_API.Controllers
         /// </summary>
         /// <returns>List Of Books</returns>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetBooks()

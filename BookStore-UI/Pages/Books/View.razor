@@ -1,0 +1,76 @@
+﻿@page "/books/view/{id}"
+
+@inject IBookRepository bookRepo_
+@inject NavigationManager navManager_
+
+@if (int.Parse(Id) < 1 || string.IsNullOrWhiteSpace(Id))
+{
+    <LoadingMessage Message="Not a valid entry. Please try again." />
+}
+else if (Model == null)
+{
+    <LoadingMessage Message="Loading Book Details" />
+}
+else
+{
+<div class="row">
+    <div class="col-6">
+        <h4>Book Details</h4>
+        <table class="table table-responsive">
+            <tr>
+                <td>Book Title</td>
+                <td>@Model.Title</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>
+                    @if (Model.Author == null)
+                    {
+                        <span class="text-muted">No Author marked For this book</span>
+                    }
+                    else
+                    {
+                        <a href="/authors/view/@Model.AuthorId">@Model.Author.FirstName, @Model.Author.LastName</a>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Summary</td>
+                <td>@Model.Summary</td>
+            </tr>
+            <tr>
+                <td>Published Year</td>
+                <td>@Model.Year</td>
+            </tr>
+            <tr>
+                <td>ISBN</td>
+                <td>@Model.Isbn</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-4">
+        <img src="uploads/@Model.Image" style="height:100px; width:100px" />
+        <h3 class="text-left text-info">@Model.Price</h3>
+    </div>
+</div>
+}
+
+<button @onclick="BackToList" class="btn btn-outline-secondary">
+    <span class="oi oi-arrow-left"></span>
+    Back To List
+</button>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    private Book Model = new Book();
+    protected override async Task OnInitializedAsync()
+    {
+        int id = int.Parse(Id);
+        Model = await bookRepo_.Get(EndPoints.BooksEndpoint, id);
+    }
+    private void BackToList()
+    {
+        navManager_.NavigateTo("/books/");
+    }
+}

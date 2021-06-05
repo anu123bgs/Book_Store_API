@@ -1,10 +1,7 @@
 ﻿@page "/authors/view/{id}"
 @inject IAuthorRepository authorRepo_
 @inject NavigationManager navManager_
-<h3 class="card-title">View Author Details</h3>
-<br />
-<hr />
-<br />
+
 @if (Model == null)
 {
     <LoadingMessage Message="Loading Authors Details" />

@@ -41,6 +41,7 @@ namespace Book_Store_API.DTOs
         public string Summary { get; set; }
         public int? Year { get; set; }
         public string Image { get; set; }
+        public int? AuthorId { get; set; }
         [Required]
         public decimal? Price { get; set; }
     }
