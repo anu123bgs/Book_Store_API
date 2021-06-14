@@ -41,7 +41,7 @@ namespace BookStore_UI.Services
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
@@ -59,7 +59,7 @@ namespace BookStore_UI.Services
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
