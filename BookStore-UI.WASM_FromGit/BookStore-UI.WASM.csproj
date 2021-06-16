@@ -62,7 +62,7 @@
     <_ContentIncludedByDefault Remove="Pages\Books\Edit.razor" />
     <_ContentIncludedByDefault Remove="Pages\Books\Index.razor" />
     <_ContentIncludedByDefault Remove="Pages\Books\View.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Error.razor" />
     <_ContentIncludedByDefault Remove="Pages\Users\Login.razor" />
     <_ContentIncludedByDefault Remove="Pages\Users\Logout.razor" />
     <_ContentIncludedByDefault Remove="Pages\Users\Register.razor" />
@@ -117,7 +117,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Error.cshtml" />
+    <UpToDateCheckInput Remove="Pages\Error.razor" />
   </ItemGroup>
 
 </Project>

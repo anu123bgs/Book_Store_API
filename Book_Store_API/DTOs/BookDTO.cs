@@ -15,6 +15,7 @@ namespace Book_Store_API.DTOs
         public string Summary { get; set; }
         public string Image { get; set; }
         public decimal? Price { get; set; }
+        public string File { get; set; }
         public int? AuthorId { get; set; }
 
         public virtual AuthorDTO Author { get; set; }
@@ -29,6 +30,7 @@ namespace Book_Store_API.DTOs
         public int? Year { get; set; }
         public string Image { get; set; }
         [Required]
+        public string File { get; set; }
         public decimal? Price { get; set; }
     }
     public class UpdateBookDTO
@@ -41,6 +43,7 @@ namespace Book_Store_API.DTOs
         public string Summary { get; set; }
         public int? Year { get; set; }
         public string Image { get; set; }
+        public string File { get; set; }
         public int? AuthorId { get; set; }
         [Required]
         public decimal? Price { get; set; }
