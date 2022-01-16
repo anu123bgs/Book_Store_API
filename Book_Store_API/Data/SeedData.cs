@@ -33,7 +33,7 @@ namespace Book_Store_API.Data
                 var user = new IdentityUser()
                 {
                     UserName = "customer",
-                    Email = "customer@gmail.com"
+                    Email = "anuranjan.kumar@gmail.com"
                 };
                 var result = await userManager.CreateAsync(user, "Customer1*");
                 if (result.Succeeded)
