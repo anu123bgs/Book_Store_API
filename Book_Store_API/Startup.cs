@@ -60,7 +60,7 @@ namespace Book_Store_API
                 {
                     Title = "Book Store API",
                     Version = "v1",
-                    Description = "This is an educational Book store API",
+                    Description = "This is an educational virtual Book Store",
                 });
                 var xmlPath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xpath = Path.Combine(AppContext.BaseDirectory, xmlPath);
